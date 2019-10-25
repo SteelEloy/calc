@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         let randomNumberTwo = UInt8(arc4random_uniform(100))
                
                func randomZnak() -> UInt8{
-                   let randZnak = UInt8(arc4random_uniform(4))
+                   let randZnak = UInt8(arc4random_uniform(1))
                    return randZnak
                }
                
@@ -139,20 +139,31 @@ class ViewController: UIViewController {
     
     
     @IBAction func randomNumberExample(_ sender: UIButton) {
-        
+        //print(numberSum)
+        //print(answer!)
         if Int(numberSum) == Int(answer!){
           
          let alertController = UIAlertController(title: "Result", message: "Правильно", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title: "ОК", style:
-                UIAlertAction.Style.default, handler: nil))
+                UIAlertAction.Style.default, handler: restartFull))
         self.present(alertController, animated: true, completion: nil)
       }else {
          let alertController = UIAlertController(title: "Result", message: "Ответ не верный!", preferredStyle: UIAlertController.Style.alert)
-                alertController.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default, handler: nil))
+                alertController.addAction(UIAlertAction(title: "Повторить", style: UIAlertAction.Style.default, handler: resRetry))
                 alertController.addAction(UIAlertAction(title: "Отмена", style: UIAlertAction.Style.default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
       }
-        
+       
+    }
+    func resRetry(alert: UIAlertAction){
+        numberSum = ""
+        inputNumber.text = ""
+    }
+    func restartFull(alert: UIAlertAction){
+        answer = x3()
+        numberSum = ""
+        inputNumber.text = ""
+
     }
 
 }
